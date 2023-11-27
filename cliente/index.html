@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Docker Parcial 2</title>
+    <title>Cliente HTML</title>
   </head>
 
   <body>
@@ -82,11 +82,15 @@
 
         function updateTable(result) {
           const tableBody = document.getElementById("perfiles");
-        
+          // Limpiar la tabla antes de agregar nuevos datos
+          /* tableBody.innerHTML = ""; */
+
+          // Parsear la respuesta SOAP
           const parser = new DOMParser();
           const xmlDoc = parser.parseFromString(result, "text/xml");
           console.log(xmlDoc);
 
+          // Obtener la lista de usuarios
           const usuarios = xmlDoc.getElementsByTagNameNS(
             "http://localhost:4000/consultar_usuarios",
             "usuarios",
@@ -100,6 +104,7 @@
             const perfil = usuario.querySelector("perfil").textContent;
             const activo = usuario.querySelector("activo").textContent;
 
+            // Crear una fila y agregarla a la tabla
             const row = document.createElement("tr");
             row.innerHTML = `<td>${id}</td><td>${nomUsuario}</td><td>${perfil}</td><td>${activo}</td>`;
             tableBody.appendChild(row);
@@ -110,36 +115,36 @@
   </body>
   <style>
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: 80px;
-    }
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   margin-top: 80px;
+ }
 
-    table {
-      width: 80%;
-      border-radius: 80;
-      margin-top: 20px;
-      color: green;
-      border-color: blue; 
-    }
+ table {
+   width: 80%;
+   border-radius: 80;
+   margin-top: 20px;
+   color: green;
+   border-color: blue; 
+ }
 
-    th,
-    td {
-      border: 1px solid green;
-      padding: 1px;
-      text-align: center;
-    }
+ th,
+ td {
+   border: 1px solid green;
+   padding: 1px;
+   text-align: center;
+ }
 
-    form {
-      display: flex;
-      flex-direction: column;
-    }
+ form {
+   display: flex;
+   flex-direction: column;
+ }
 
-    input,
-    select {
-      margin-bottom: 10px;
-      padding: 5px;
-    }
-  </style>
+ input,
+ select {
+   margin-bottom: 10px;
+   padding: 5px;
+ }
+ </style>
 </html>

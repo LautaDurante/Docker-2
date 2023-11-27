@@ -9,7 +9,7 @@ const pool = mysql.createPool({
     host: 'mysql',
     user: 'root',
     password: 'root',
-    database: 'docker2',
+    database: 'swarmdb',
 });
 
 app.use(morgan('dev'))
